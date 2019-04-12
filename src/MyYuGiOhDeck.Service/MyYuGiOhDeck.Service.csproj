@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyYuGiOhDeck.CrossCutting\MyYuGiOhDeck.CrossCutting.csproj" />
+    <ProjectReference Include="..\MyYuGiOhDeck.Domain\MyYuGiOhDeck.Domain.csproj" />
+    <ProjectReference Include="..\MyYuGiOhDeck.Persistence\MyYuGiOhDeck.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
