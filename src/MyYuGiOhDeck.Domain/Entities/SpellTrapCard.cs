@@ -1,6 +1,6 @@
 ﻿namespace MyYuGiOhDeck.Domain.Entities
 {
-    public class Card
+    public class SpellTrapCard
     {
         public string Id { get; set; }
         public string Name { get; set; }

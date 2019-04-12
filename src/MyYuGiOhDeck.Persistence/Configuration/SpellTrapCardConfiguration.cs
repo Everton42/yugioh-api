@@ -4,9 +4,9 @@ using MyYuGiOhDeck.Domain.Entities;
 
 namespace MyYuGiOhDeck.Persistence.Configuration
 {
-    public class CardConfiguration : IEntityTypeConfiguration<Card>
+    public class SpellTrapCardConfiguration : IEntityTypeConfiguration<SpellTrapCard>
     {
-        public void Configure(EntityTypeBuilder<Card> builder)
+        public void Configure(EntityTypeBuilder<SpellTrapCard> builder)
         {
             builder.ToTable("SpellandTrapCard");
 

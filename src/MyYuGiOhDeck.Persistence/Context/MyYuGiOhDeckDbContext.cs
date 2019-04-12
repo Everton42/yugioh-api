@@ -10,19 +10,17 @@ namespace MyYuGiOhDeck.Persistence.Context
         {
         }
 
-        public DbSet<Card> Card { get; set; }
-        //public DbSet<MonsterCard> MonsterCard { get; set; }
-        //public DbSet<LinkMonsterCard> LinkMonsterCard { get; set; }
-        //public DbSet<PendulumMonsterCard> PendulumMonsterCard { get; set; }
+        public DbSet<SpellTrapCard> SpellTrapCard { get; set; }
+        public DbSet<MonsterCard> MonsterCard { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Card>(new CardConfiguration().Configure);
+            modelBuilder.Entity<SpellTrapCard>(new SpellTrapCardConfiguration().Configure);
             modelBuilder.Entity<MonsterCard>().ToTable("MonsterCard");
-            modelBuilder.Entity<LinkMonsterCard>().ToTable("LinkMonsterCard");
-            modelBuilder.Entity<PendulumMonsterCard>().ToTable("PendulumMonsterCard");
+            modelBuilder.Entity<LinkMonsterCard>().ToTable("LinkMonsterCard").HasBaseType<MonsterCard>();
+            modelBuilder.Entity<PendulumMonsterCard>().ToTable("PendulumMonsterCard").HasBaseType<MonsterCard>();
         }
     }
 }
