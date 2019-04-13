@@ -18,11 +18,17 @@ namespace MyYuGiOhDeck.Application
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MyYuGiOhDeckDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             Ioc.IocConfig.Configure(services);
 
@@ -38,7 +44,6 @@ namespace MyYuGiOhDeck.Application
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,7 +52,6 @@ namespace MyYuGiOhDeck.Application
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseSwagger();
@@ -57,6 +61,7 @@ namespace MyYuGiOhDeck.Application
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Yu-Gi-OH! Deck");
             });
 
+            app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
