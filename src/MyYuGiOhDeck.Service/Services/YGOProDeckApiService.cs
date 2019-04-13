@@ -8,10 +8,14 @@ namespace MyYuGiOhDeck.Service.Services
 {
     public class YGOProDeckApiService : IYGOProDeckApiService
     {
-        YGOProDeckApiClient client = new YGOProDeckApiClient();
+        private IYGOProDeckApiClient _client;
+        public YGOProDeckApiService(IYGOProDeckApiClient client)
+        {
+            _client = client;
+        }
         public Task<IList<SpellTrapCard>> GetAllCardsAsync()
         {
-            return client.GetAllSpellTrapCardAsync();
+            return _client.GetAllSpellTrapCardAsync();
         }
     }
 }

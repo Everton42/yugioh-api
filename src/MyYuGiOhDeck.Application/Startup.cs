@@ -24,6 +24,8 @@ namespace MyYuGiOhDeck.Application
             services.AddDbContext<MyYuGiOhDeckDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            Ioc.IocConfig.Configure(services);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(options =>
             {

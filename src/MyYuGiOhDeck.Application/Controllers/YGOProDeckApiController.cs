@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyYuGiOhDeck.CrossCutting;
 using MyYuGiOhDeck.Domain.Entities;
+using MyYuGiOhDeck.Domain.Interfaces;
 using MyYuGiOhDeck.Service.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,17 +13,18 @@ namespace MyYuGiOhDeck.Application.Controllers
     [ApiController]
     public class YGOProDeckApiController : ControllerBase
     {
-        public YGOProDeckApiController()
+        private readonly IYGOProDeckApiService _service;
+        public YGOProDeckApiController(IYGOProDeckApiService service)
         {
             ApiHelper.InitializeClient();
+            _service = service;
         }
-        YGOProDeckApiService service = new YGOProDeckApiService();
 
         [HttpGet]
         [Route("GetAllCards")]
         public async Task<IList<SpellTrapCard>> GetAllCardsAsync()
         {
-             IList<SpellTrapCard> list = await service.GetAllCardsAsync();
+             IList<SpellTrapCard> list = await _service.GetAllCardsAsync();
                 return list;
         }
     }

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyYuGiOhDeck.Domain\MyYuGiOhDeck.Domain.csproj" />
+    <ProjectReference Include="..\MyYuGiOhDeck.Ioc\MyYuGiOhDeck.Ioc.csproj" />
     <ProjectReference Include="..\MyYuGiOhDeck.Service\MyYuGiOhDeck.Service.csproj" />
   </ItemGroup>
 
