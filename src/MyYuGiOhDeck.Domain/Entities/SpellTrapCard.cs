@@ -2,9 +2,8 @@
 
 namespace MyYuGiOhDeck.Domain.Entities
 {
-    public class SpellTrapCard
+    public class SpellTrapCard : EntityBase
     {
-        public string Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         [JsonProperty("desc")]

@@ -25,7 +25,7 @@ namespace MyYuGiOhDeck.Persistence.Configuration
 
             builder.Property(e => e.Description)
                 .IsRequired()
-                .HasMaxLength(300);
+                .HasMaxLength(800);
 
             builder.Property(e => e.Type)
                 .IsRequired()
@@ -40,10 +40,10 @@ namespace MyYuGiOhDeck.Persistence.Configuration
                 .HasMaxLength(200);
 
             builder.Property(e => e.Setcode)
-                .HasMaxLength(300);
+                .HasMaxLength(400);
 
             builder.Property(e => e.SetTag)
-                .HasMaxLength(200);
+                .HasMaxLength(400);
 
             builder.Property(e => e.ImageUrl)
                 .HasMaxLength(300);

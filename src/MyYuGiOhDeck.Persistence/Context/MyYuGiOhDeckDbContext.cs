@@ -18,7 +18,7 @@ namespace MyYuGiOhDeck.Persistence.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<SpellTrapCard>(new SpellTrapCardConfiguration().Configure);
-            modelBuilder.Entity<MonsterCard>().ToTable("MonsterCard");
+            modelBuilder.Entity<MonsterCard>(new MonsterCardConfiguration().Configure);
             modelBuilder.Entity<LinkMonsterCard>().ToTable("LinkMonsterCard").HasBaseType<MonsterCard>();
             modelBuilder.Entity<PendulumMonsterCard>().ToTable("PendulumMonsterCard").HasBaseType<MonsterCard>();
         }

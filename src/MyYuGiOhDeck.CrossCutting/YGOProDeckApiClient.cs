@@ -1,5 +1,6 @@
 ﻿using MyYuGiOhDeck.Domain.Entities;
 using MyYuGiOhDeck.Domain.Interfaces;
+using MyYuGiOhDeck.Domain.ValueObject;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ namespace MyYuGiOhDeck.CrossCutting
 {
     public class YGOProDeckApiClient : IYGOProDeckApiClient
     {
-        public async Task<IList<SpellTrapCard>> GetAllSpellTrapCardAsync()
+        public async Task<IList<SpellTrapCard>> GetAllSpellCardsAsync()
         {
-            using (var response = await ApiHelper.ApiClient.GetAsync("?type=spell%20card&type=trap%20card"))
+            using (var response = await ApiHelper.ApiClient.GetAsync("?type=spell%20card"))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -29,6 +30,5 @@ namespace MyYuGiOhDeck.CrossCutting
                 }
             }
         }
-
     }
 }

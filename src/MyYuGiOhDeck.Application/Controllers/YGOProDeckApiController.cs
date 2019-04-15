@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyYuGiOhDeck.CrossCutting;
 using MyYuGiOhDeck.Domain.Entities;
 using MyYuGiOhDeck.Domain.Interfaces;
-using MyYuGiOhDeck.Service.Services;
+using MyYuGiOhDeck.Domain.ValueObject;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,11 +20,11 @@ namespace MyYuGiOhDeck.Application.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllCards")]
-        public async Task<IList<SpellTrapCard>> GetAllCardsAsync()
+        [Route("GetAllSpellCards")]
+        public async Task<IList<SpellTrapCard>> GetAllSpellCardsAsync()
         {
-             IList<SpellTrapCard> list = await _service.GetAllCardsAsync();
-                return list;
+            IList<SpellTrapCard> list = await _service.GetAllSpellCardsAsync();
+            return list;
         }
     }
 }

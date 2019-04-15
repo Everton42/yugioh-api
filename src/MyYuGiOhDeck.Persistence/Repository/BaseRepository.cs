@@ -1,33 +1,47 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MyYuGiOhDeck.Domain.Entities;
 using MyYuGiOhDeck.Domain.Interfaces;
+using MyYuGiOhDeck.Persistence.Context;
 
 namespace MyYuGiOhDeck.Persistence.Repository
 {
-    public class BaseRepository<T> : IRepository<T>
+    public class BaseRepository<T> : IRepository<T> where T : EntityBase
     {
-        public void Delete(string id)
+        protected readonly MyYuGiOhDeckDbContext _context;
+        protected readonly DbSet<T> _db;
+
+        public BaseRepository(MyYuGiOhDeckDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+            _db = _context.Set<T>();
+        }
+        public async Task<bool> DeleteAsync(T obj)
+        {
+            _db.Remove(obj);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public IList<T> GetAll()
+        public async Task<IList<T>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            var cards = await _db
+                        .ToListAsync();
+            return cards;
         }
 
-        public T GetById(string id)
+        public async Task<T> GetByIdAsync(string id)
         {
-            throw new System.NotImplementedException();
+            return await _db
+                .FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
 
-        public void Insert(T obj)
+        public async Task<T> InsertAsync(T obj)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(T obj)
-        {
-            throw new System.NotImplementedException();
+            await _db.AddAsync(obj);
+            await _context.SaveChangesAsync();
+            return obj;
         }
     }
 }

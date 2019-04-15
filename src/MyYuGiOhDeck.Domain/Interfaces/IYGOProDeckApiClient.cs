@@ -6,6 +6,6 @@ namespace MyYuGiOhDeck.Domain.Interfaces
 {
     public interface IYGOProDeckApiClient
     {
-        Task<IList<SpellTrapCard>> GetAllSpellTrapCardAsync();
+        Task<IList<SpellTrapCard>> GetAllSpellCardsAsync();
     }
 }

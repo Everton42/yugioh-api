@@ -2,11 +2,11 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace MyYuGiOhDeck.CrossCutting
+namespace MyYuGiOhDeck.Domain.ValueObject
 {
     public static class ApiHelper
     {
-        public static HttpClient ApiClient { get; set; } = new HttpClient();
+        public static HttpClient ApiClient { get; set; }
 
         public static void InitializeClient()
         {

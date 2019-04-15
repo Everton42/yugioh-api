@@ -5,5 +5,8 @@ namespace MyYuGiOhDeck.Service.Validation
 {
     public class SpellTrapCardValidator : AbstractValidator<SpellTrapCard>
     {
+        public SpellTrapCardValidator()
+        {
+        }
     }
 }

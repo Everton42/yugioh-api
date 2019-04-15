@@ -1,14 +1,15 @@
 ﻿using FluentValidation;
+using MyYuGiOhDeck.Domain.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyYuGiOhDeck.Domain.Interfaces
 {
-    public interface IService<T>
+    public interface IService<T> where T : EntityBase 
     {
-        void Insert<V>(T obj) where V : AbstractValidator<T>;
-        void Update<V>(T obj) where V : AbstractValidator<T>;
-        void Delete(string id);
-        T GetById(string id);
-        IList<T> GetAll();
+        Task<T> InsertAsync<V>(T obj) where V : AbstractValidator<T>;
+        Task<bool> DeleteAsync(string id);
+        Task<T> GetByIdAsync(string id);
+        Task<IList<T>> GetAllAsync();
     }
 }

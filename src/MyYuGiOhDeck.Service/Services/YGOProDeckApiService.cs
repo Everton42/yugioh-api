@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using MyYuGiOhDeck.CrossCutting;
-using MyYuGiOhDeck.Domain.Entities;
+﻿using MyYuGiOhDeck.Domain.Entities;
 using MyYuGiOhDeck.Domain.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyYuGiOhDeck.Service.Services
 {
@@ -13,9 +12,9 @@ namespace MyYuGiOhDeck.Service.Services
         {
             _client = client;
         }
-        public Task<IList<SpellTrapCard>> GetAllCardsAsync()
+        public Task<IList<SpellTrapCard>> GetAllSpellCardsAsync()
         {
-            return _client.GetAllSpellTrapCardAsync();
+            return _client.GetAllSpellCardsAsync();
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using MyYuGiOhDeck.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyYuGiOhDeck.Domain.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : EntityBase
     {
-        void Insert(T obj);
-        void Update(T obj);
-        void Delete(string id);
-        T GetById(string id);
-        IList<T> GetAll();
+        Task<T> InsertAsync(T obj);
+        Task<bool> DeleteAsync(T obj);
+        Task<T> GetByIdAsync(string id);
+        Task<IList<T>> GetAllAsync();
     }
 }
