@@ -25,7 +25,6 @@ namespace MyYuGiOhDeck.Persistence.Configuration
                 .HasMaxLength(100);
 
             builder.Property(e => e.Archetype)
-                .IsRequired()
                 .HasMaxLength(200);
 
             builder.Property(e => e.Race)
