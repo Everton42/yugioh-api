@@ -19,37 +19,60 @@ namespace MyYuGiOhDeck.Application.Controllers
         }
 
         [HttpGet]
-        [Route("GetMySpellCards")]
-        public async Task<List<SpellTrapCard>> GetAllMySpellCardsAsync()
+        [Route("SpellCard")]
+        [ProducesResponseType(typeof(SpellTrapCard), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetAllMySpellCardsAsync()
         {
-            return await _service.GetAllMySpellCardsAsync();
+            return Ok(await _service.GetAllMySpellCardsAsync());
         }
 
         [HttpGet]
-        [Route("GetMyTrapCards")]
-        public async Task<List<SpellTrapCard>> GetAllMyTrapCardsAsync()
+        [Route("TrapCard")]
+        [ProducesResponseType(typeof(SpellTrapCard), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetAllMyTrapCardsAsync()
         {
-            return await _service.GetAllMyTrapCardsAsync();
+            return Ok(await _service.GetAllMyTrapCardsAsync());
         }
         [HttpGet]
-        [Route("GetMySpellTrapCardById")]
-        public async Task<SpellTrapCard> GetSpellTrapCardByIdAsync(string id)
+        [Route("SpellOrTrapCard/{id}")]
+        [ProducesResponseType(typeof(SpellTrapCard), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> GetSpellTrapCardByIdAsync([FromRoute]string id)
         {
-            return await _service.GetByIdAsync(id);
+            var obj = await _service.GetByIdAsync(id);
+            if (obj == null)
+                return NotFound();
+
+            return Ok(obj);
         }
 
         [HttpPost]
-        [Route("SaveSpellTrapCard")]
-        public async Task<SpellTrapCard> SaveSpellCardAsync(SpellTrapCard obj)
+        [Route("SpellOrTrapCard")]
+        [ProducesResponseType(typeof(SpellTrapCard), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> SaveSpellCardAsync([FromBody] SpellTrapCard input)
         {
-            return await _service.InsertAsync<SpellTrapCardValidator>(obj);
+            var obj = await _service.InsertAsync<SpellTrapCardValidator>(input);
+            return Created(nameof(SpellTrapCard), obj);
         }
 
         [HttpDelete]
-        [Route("DeleteMySpellTrapCard")]
-        public async Task<bool> DeleteMySpellTrapCardAsync(string id)
+        [Route("SpellOrTrapCard/{id}")]
+        [ProducesResponseType(typeof(SpellTrapCard), 200)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(409)]
+        public async Task<IActionResult> DeleteMySpellTrapCardAsync([FromRoute] string id)
         {
-            return await _service.DeleteAsync(id);
+            var objDeleted = await _service.DeleteAsync(id);
+            if (objDeleted == false)
+                return NotFound();
+            return Ok();
         }
     }
 }
