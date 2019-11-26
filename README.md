@@ -1,5 +1,5 @@
 # My YuGiOh! Deck Api 
-[Incompleta]
+
 É uma WEB API com ASP.NET Core 2.2 simples que consome a api [ygoprodeck](https://db.ygoprodeck.com/api-guide/) e dá a opção de salvar 
 as informações das cartas em um servidor local. É um projetinho feito por diversão.
 
